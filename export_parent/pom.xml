@@ -266,7 +266,6 @@
             <version>4.0.1</version>
         </dependency>
 
-
         <!-- cxf 进行rs开发 必须导入  -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
