@@ -14,7 +14,7 @@ import java.util.List;
  * @author: caihongrui
  * @createtime: 2019-11-14 17:55
  **/
-@Transactional
+//@Transactional
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
@@ -23,6 +23,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Company> findAll() {
+        System.out.println("进入service方法");
         return companyDao.findAll();
     }
 
