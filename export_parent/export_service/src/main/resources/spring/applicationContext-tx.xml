@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--开启注解包扫描-->
+    <context:component-scan base-package="com.rui.service"/>
+
+    <!--配置事务管理平台-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--配置事务支持-->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <!--支持增删改,默认属性-->
+            <tx:method name="*" read-only="false" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切面 切面=切点+通知-->
+    <aop:config>
+        <aop:pointcut id="pointCut" expression="execution(* com.rui.service.*.*.*.*(..))"></aop:pointcut>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"></aop:advisor>
+    </aop:config>
+
+    <!--开启事务的注解支持-->
+    <tx:annotation-driven />
+</beans>

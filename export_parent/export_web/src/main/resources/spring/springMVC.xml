@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--开启注解扫描,扫描controller包下的注解-->
+    <context:component-scan base-package="com.rui.web.controller" />
+
+    <!--配置视图解析器-->
+    <!-- return "forward:/WEB-INF/pages/company/company-list.jsp";-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置上传文件最大尺寸为5MB-->
+        <property name="maxUploadSize">
+            <value>5242880</value>
+        </property>
+    </bean>
+
+    <!--异常处理器-->
+    <bean class="com.rui.web.exception.MyException"></bean>
+
+    <!--日期处理器-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.rui.web.converter.MyStringToDateConverter"></bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--开启spring注解驱动-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+</beans>
