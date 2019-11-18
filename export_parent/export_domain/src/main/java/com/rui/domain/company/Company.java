@@ -1,6 +1,7 @@
 package com.rui.domain.company;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 public class Company implements Serializable {
     private String id;
     private String name;//公司名称
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expirationDate;//到期时间
     private String address;//公司地址
     private String licenseId;//营业执照
