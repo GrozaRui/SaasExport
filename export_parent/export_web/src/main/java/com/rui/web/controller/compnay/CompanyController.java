@@ -1,5 +1,6 @@
 package com.rui.web.controller.compnay;
 
+import com.github.pagehelper.PageInfo;
 import com.rui.domain.company.Company;
 import com.rui.entity.PageResult;
 import com.rui.service.company.CompanyService;
@@ -25,19 +26,20 @@ public class CompanyController extends BaseController {
     @RequestMapping("/list")
     public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
         //利用分页对象进行分页查询
-        PageResult pageResult = companyService.findByPage(page, size);
+        PageInfo pageInfo = companyService.findByPage(page, size);
         System.out.println("进入findAll方法");
         //List<Company> list = companyService.findAll();
         //request.setAttribute("companyList", list);
-        request.setAttribute("page",pageResult);
+        request.setAttribute("page",pageInfo);
         return "company/company-list";
     }
 
     //根据id查询
     @RequestMapping("/findById")
     public String findById(String id) {
-        if (id != null && "".equals(id)) {
+        if (id != null && !"".equals(id)) {
             Company company = companyService.findById(id);
+            request.setAttribute("company",company);
         }
         return "redirect:/company/list.do";
     }
@@ -51,7 +53,8 @@ public class CompanyController extends BaseController {
     //跳转修改页面
     @RequestMapping("/toUpdate")
     public String toUpdate(String id) {
-        if (id != null && "".equals(id)) {
+        if (id != null && !"".equals(id)) {
+            System.out.println("进入 companyConroller.toUpdate");
             Company company = companyService.findById(id);
             request.setAttribute("company",company);
         }
@@ -72,7 +75,7 @@ public class CompanyController extends BaseController {
     //删除数据
     @RequestMapping("/delete")
     public String delete(String id) {
-        if (id != null && "".equals(id)) {
+        if (id != null && !"".equals(id)) {
             companyService.delete(id);
         }
         return "redirect:/company/list.do";

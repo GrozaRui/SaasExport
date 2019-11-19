@@ -1,5 +1,6 @@
 package com.rui.service.company;
 
+import com.github.pagehelper.PageInfo;
 import com.rui.domain.company.Company;
 import com.rui.entity.PageResult;
 
@@ -28,5 +29,5 @@ public interface CompanyService {
     void delete(String id);
 
     //分页查询
-    PageResult findByPage(int page, int size);
+    PageInfo findByPage(int page, int size);
 }

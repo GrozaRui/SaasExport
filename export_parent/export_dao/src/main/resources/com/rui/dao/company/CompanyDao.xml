@@ -67,16 +67,16 @@
         update ss_company
         <set>
           <if test="name != null and name != ''">
-              name = #{name}
+              name = #{name},
           </if>
             <if test="expirationDate!=null and expirationDate!=''">
-                expiration_date=#{expirationDate},
+                expiration_date = #{expirationDate},
             </if>
             <if test="address!=null and address!=''">
-                address=#{address},
+                address = #{address},
             </if>
             <if test="licenseId!=null and licenseId!=''">
-                license_id=#{licenseId},
+                license_id = #{licenseId},
             </if>
             <if test="representative!=null and representative!=''">
                 representative=#{representative},
@@ -118,7 +118,7 @@
 
     <!--查询数据列表-->
     <select id="findByPage" parameterType="map" resultMap="BaseResultMap">
-        select * from ss_company limit #{index},#{size}
+        select * from ss_company
     </select>
 
 

@@ -22,6 +22,21 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--注入数据源-->
         <property name="dataSource" ref="dataSource"></property>
+        <!--配置PageHelper分页插件-->
+        <property name="plugins">
+            <set>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <props>
+                            <!--方言-->
+                            <prop key="helperDialect">
+                                mysql
+                            </prop>
+                        </props>
+                    </property>
+                </bean>
+            </set>
+        </property>
         <!--别名配置-->
         <!--<property name="typeAliases" value="com.rui.domain.company"></property>-->
     </bean>
