@@ -92,7 +92,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="item">
+                    <c:forEach items="${page.list}" var="item">
                     <tr>
                         <td><input name="ids" value="${item.id}" type="checkbox"></td>
                         <td>
@@ -117,19 +117,19 @@
         <!-- /.box-body -->
 
         <!-- .box-footer-->
-        <div class="box-footer">
-            <div class="pull-left">
-                <div class="form-group form-inline">
-                    总共2 页，共14 条数据。 每页
-                    <select class="form-control">
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>50</option>
-                        <option>80</option>
-                    </select> 条
-                </div>
-            </div>
+        <%--<div class="box-footer">--%>
+            <%--<div class="pull-left">--%>
+                <%--<div class="form-group form-inline">--%>
+                    <%--总共2 页，共14 条数据。 每页--%>
+                    <%--<select class="form-control">--%>
+                        <%--<option>10</option>--%>
+                        <%--<option>15</option>--%>
+                        <%--<option>20</option>--%>
+                        <%--<option>50</option>--%>
+                        <%--<option>80</option>--%>
+                    <%--</select> 条--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <%--<div class="box-tools pull-right">--%>
                 <%--<ul class="pagination">--%>
