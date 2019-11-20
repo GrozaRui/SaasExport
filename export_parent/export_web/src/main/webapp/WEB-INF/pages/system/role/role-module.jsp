@@ -35,7 +35,7 @@
             }
         };
 
-        /*var zNodes =[
+        var zNodes =[
             { id:11, pId:1, name:"随意勾选 1-1", open:true},
             { id:111, pId:11, name:"随意勾选 1-1-1"},
             { id:112, pId:11, name:"随意勾选 1-1-2"},
@@ -49,7 +49,7 @@
             { id:222, pId:22, name:"随意勾选 2-2-2"},
             { id:23, pId:2, name:"随意勾选 2-3"},
             { id:1, pId:0, name:"随意勾选 1", open:true}
-        ];*/
+        ];
 
 
         $(document).ready(function () {
