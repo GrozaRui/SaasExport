@@ -20,4 +20,7 @@ public interface ModuleDao {
 
     //删除模块信息
     void delete(String id);
+
+    //根据角色id去 角色-模块中间表 查询对应的模块信息
+    List<Module> findModuleByRoleId(String roleId);
 }

@@ -70,4 +70,10 @@
         delete from ss_module where module_id = #{id}
     </delete>
 
+    <select id="findModuleByRoleId" parameterType="string" resultMap="BaseModuleMap">
+        select m.*
+        from ss_module m, pe_role_module rm
+        where m.module_id = rm.module_id
+        and rm.role_id = #{roleId}
+    </select>
 </mapper>

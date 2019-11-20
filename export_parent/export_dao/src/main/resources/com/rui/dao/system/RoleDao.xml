@@ -44,4 +44,19 @@
         delete from pe_role where role_id = #{id}
     </delete>
 
+    <delete id="deleteRolemodule" parameterType="string">
+        delete from pe_role_module where role_id = #{roleId}
+    </delete>
+
+    <insert id="saveRoleModule" parameterType="map">
+        insert into pe_role_module
+        (
+        role_id, module_id
+        )
+        values
+        (
+        #{roleId},#{moduleId}
+        )
+    </insert>
+
 </mapper>

@@ -50,4 +50,16 @@ public class RoleServiceImpl implements RoleService {
     public void delete(String id) {
         roleDao.delete(id);
     }
+
+    @Override
+    public void updateRoleModule(String roleId, String moduleIds) {
+        //全部删除该角色的模块权限信息
+        roleDao.deleteRolemodule(roleId);
+        //将拼接的模块id转为模块id数组
+        String[] moduleIdArray = moduleIds.split(",");
+        //遍历 保存信息到中间表
+        for (String moduleId : moduleIdArray) {
+            roleDao.saveRoleModule(roleId, moduleId);
+        }
+    }
 }

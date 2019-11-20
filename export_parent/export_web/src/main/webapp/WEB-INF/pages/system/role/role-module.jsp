@@ -35,7 +35,7 @@
             }
         };
 
-        var zNodes =[
+        /*var zNodes =[
             { id:11, pId:1, name:"随意勾选 1-1", open:true},
             { id:111, pId:11, name:"随意勾选 1-1-1"},
             { id:112, pId:11, name:"随意勾选 1-1-2"},
@@ -49,12 +49,12 @@
             { id:222, pId:22, name:"随意勾选 2-2-2"},
             { id:23, pId:2, name:"随意勾选 2-3"},
             { id:1, pId:0, name:"随意勾选 1", open:true}
-        ];
+        ];*/
 
 
         $(document).ready(function () {
             var url = "/system/role/getZtreeNodes.do";
-            var param = {"roleid": "${role.id}"};
+            var param = {"roleId": "${role.id}"};
             $.get(url, param, function (data) {
                 // 调用初始化树的方法
                 initZtree(data);
@@ -93,7 +93,7 @@
                 if (str != "") {
                     str += ",";
                 }
-                str += nodes[i].id;
+                str += nodes[i].id;//相当于模块id
             }
             // 使用jq给隐藏域赋值
             $('#moduleIds').val(str);
@@ -138,7 +138,7 @@
                     <!--工具栏/-->
                     <!-- 树菜单 -->
                     <form name="icform" method="post" action="/system/role/updateRoleModule.do">
-                        <input type="hidden" name="roleid" value="${role.id}"/>
+                        <input type="hidden" name="roleId" value="${role.id}"/>
                         <input type="hidden" id="oldmoduleIds" name="oldmoduleIds" value=""/>
                         <input type="hidden" id="moduleIds" name="moduleIds" value=""/>
                         <div class="content_wrap">

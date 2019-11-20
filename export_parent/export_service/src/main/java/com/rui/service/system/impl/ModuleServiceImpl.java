@@ -56,4 +56,9 @@ public class ModuleServiceImpl implements ModuleService {
     public void delete(String id) {
         moduleDao.delete(id);
     }
+
+    @Override
+    public List<Module> findModuleByRoleId(String roleId) {
+        return moduleDao.findModuleByRoleId(roleId);
+    }
 }

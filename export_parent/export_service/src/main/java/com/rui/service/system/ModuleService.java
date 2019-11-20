@@ -24,4 +24,7 @@ public interface ModuleService {
 
     //删除模块信息
     void delete(String id);
+
+    //根据角色id去 角色-模块表查询 对应的模块列表
+    List<Module> findModuleByRoleId(String roleId);
 }

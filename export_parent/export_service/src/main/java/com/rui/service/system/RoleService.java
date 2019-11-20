@@ -21,4 +21,7 @@ public interface RoleService {
 
     //删除角色信息
     void delete(String id);
+
+    //修改角色的模块权限信息
+    void updateRoleModule(String roleId, String moduleIds);
 }
