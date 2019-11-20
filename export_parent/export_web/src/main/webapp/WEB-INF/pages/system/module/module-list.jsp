@@ -90,9 +90,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="o"  varStatus="st">
+                    <c:forEach items="${page.list}" var="o"  varStatus="status">
                         <tr>
-                            <td><input type="checkbox" name="id" value="${o.id }"/></td>
+                            <td><input type="checkbox" name="id" value="${o.id}"/></td>
                             <td>${status.index+1}</td>
                             <td><a href="moduleAction_toview?id=${o.id}">${o.name}</a></td>
                             <td>${o.parentName}</td>
