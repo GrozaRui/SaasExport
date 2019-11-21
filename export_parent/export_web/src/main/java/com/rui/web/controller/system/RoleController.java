@@ -33,7 +33,7 @@ public class RoleController extends BaseController {
     private ModuleService moduleService;
 
     //分页查询角色列表
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",name = "分页查询所有角色信息")
     public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
         //调用service层分页查询所有角色信息
         PageInfo pageInfo = roleService.findAllRole(page, size, companyId);
@@ -42,7 +42,7 @@ public class RoleController extends BaseController {
     }
 
     //跳转新增角色页面
-    @RequestMapping("/toAdd")
+    @RequestMapping(value = "/toAdd",name = "跳转新增角色信息页面")
     public String toAdd() {
         return "/system/role/role-add";
     }
@@ -57,7 +57,7 @@ public class RoleController extends BaseController {
     }
 
     //新增或修改角色信息
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit",name = "新增或修改角色信息")
     public String edit(Role role) {
         role.setCompanyId(companyId);
         role.setCompanyName(companyName);
@@ -70,7 +70,7 @@ public class RoleController extends BaseController {
     }
 
     //删除角色信息
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",name = "删除角色信息")
     public String delete(String id) {
         if (id != null && !"".equals(id)) {
             roleService.delete(id);
@@ -80,7 +80,7 @@ public class RoleController extends BaseController {
 
 
     //跳转角色的权限信息页面
-    @RequestMapping("/roleModule")
+    @RequestMapping(value = "/roleModule",name = "跳转到角色的模块权限页面")
     public String toRoleModule(String roleId) {
         //查询出当前角色的信息
         Role role = roleService.findRoleById(roleId);
@@ -91,7 +91,7 @@ public class RoleController extends BaseController {
     /**
      * 初始化角色的权限树形结构
      */
-    @RequestMapping("/getZtreeNodes")
+    @RequestMapping(value = "/getZtreeNodes",name = "初始化角色的权限树形结构")
     @ResponseBody  //将对象自动转换为json字符串
     public List<Map> getZtreeNodes(String roleId) {
         //查询出所有的模块信息
@@ -122,11 +122,10 @@ public class RoleController extends BaseController {
      * roleId    :  xxxxx
      * moduleIds : 2,201,202,203,204,205,206,207,208,3,301,302
      */
-    @RequestMapping("/updateRoleModule")
+    @RequestMapping(value = "/updateRoleModule",name = "修改角色的模块权限信息")
     public String updateRoleModule(String roleId, String moduleIds) {
         roleService.updateRoleModule(roleId, moduleIds);
         return "redirect:/system/role/list.do";
     }
-
 
 }

@@ -40,7 +40,7 @@ public class UserController extends BaseController {
      * @param size
      * @return
      */
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",name = "分页查询用户信息")
     public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
         //调动service层,根据当前登录用户的companyId来查询所属用户信息
         PageInfo pageInfo = userService.findAllUser(page, size, companyId);
@@ -52,7 +52,7 @@ public class UserController extends BaseController {
     /**
      * 跳转用户新增页面
      */
-    @RequestMapping("toAdd")
+    @RequestMapping(value = "toAdd",name = "跳转到用户新增页面")
     public String toAdd() {
         //查询所有部门,构造下拉框数据
         List<Dept> deptList = deptService.findAllDept(companyId);
@@ -63,7 +63,7 @@ public class UserController extends BaseController {
     /**
      * 跳转用户修改页面
      */
-    @RequestMapping("/toUpdate")
+    @RequestMapping(value = "/toUpdate",name = "跳转到用户修改页面")
     public String toUpdate(String id) {
         //查询所有部门,构造下拉框数据
         List<Dept> deptList = deptService.findAllDept(companyId);
@@ -77,7 +77,7 @@ public class UserController extends BaseController {
     /**
      * 新增/修改用户信息
      */
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit",name = "新增/修改用户信息")
     public String edit(User user) {
         //设置用户所属公司信息
         user.setCompanyId(companyId);
@@ -94,7 +94,7 @@ public class UserController extends BaseController {
     /**
      * 删除用户信息
      */
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",name = "删除用户信息")
     public String delete(String id) {
         if (id != null && !"".equals(id)) {
             userService.delete(id);
@@ -105,7 +105,7 @@ public class UserController extends BaseController {
     /**
      * 跳转用户的角色分配页面 回显数据
      */
-    @RequestMapping("/roleList")
+    @RequestMapping(value = "/roleList",name = "跳转到用户的角色分配页面")
     public String toRoleList(String id) {
         //查询出当前用户
         User user = userService.findUserById(id);
@@ -129,7 +129,7 @@ public class UserController extends BaseController {
      * 修改用户的角色信息
      * 向后台传递的参数 如果有多个相同名称的input对象 可在后台直接封装为数组
      */
-    @RequestMapping("/changeRole")
+    @RequestMapping(value = "/changeRole",name = "修改用户的对应角色信息")
     public String changeRole(String userid, String[] roleIds) {
         userService.changeRole(userid, roleIds);
         return "redirect:/system/user/list.do";

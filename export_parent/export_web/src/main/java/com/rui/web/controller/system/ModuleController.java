@@ -52,7 +52,7 @@ public class ModuleController extends BaseController {
         return "/system/module/module-update";
     }
 
-    @RequestMapping("edit")
+    @RequestMapping(value = "edit",name = "新增/修改模块信息")
     public String edit(Module module) {
         if (StringUtils.isEmpty(module.getId())) {
             moduleService.save(module);
@@ -62,7 +62,7 @@ public class ModuleController extends BaseController {
         return "redirect:/system/module/list.do";
     }
 
-    @RequestMapping("delete")
+    @RequestMapping(value = "delete",name = "删除模块信息")
     public String delete(String id) {
         moduleService.delete(id);
         return "redirect:/system/module/list.do";

@@ -28,7 +28,7 @@ public class DeptController extends BaseController {
      * 分页查询部门列表
      * @return
      */
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",name = "分页查询部门列表")
     public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
         //调用service层查询 根据当前登录用户的公司id查询
         PageInfo pageInfo = deptService.findAllDept(page, size, super.companyId);
@@ -37,7 +37,7 @@ public class DeptController extends BaseController {
         return "/system/dept/dept-list";
     }
 
-    @RequestMapping("/toAdd")
+    @RequestMapping(value = "/toAdd",name = "跳转添加部门页面")
     public String toAdd() {
         //查询所有部门 构造下拉框
         List<Dept> list = deptService.findAllDept(companyId);
@@ -45,7 +45,7 @@ public class DeptController extends BaseController {
         return "system/dept/dept-add";
     }
 
-    @RequestMapping("/toUpdate")
+    @RequestMapping(value = "/toUpdate",name = "跳转部门修改页面")
     public String toUpdate(String id) {
         if (id == null && "".equals(id)) {
             System.out.println("错误信息 DeptController.toUpdate");
@@ -60,7 +60,7 @@ public class DeptController extends BaseController {
         return "/system/dept/dept-update";
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit",name = "添加/修改部门信息")
     public String edit(Dept dept) {
         dept.setCompanyId(companyId);
         dept.setCompanyName(companyName);
@@ -73,7 +73,7 @@ public class DeptController extends BaseController {
         return "redirect:/system/dept/list.do";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",name = "删除部门信息")
     public String delete(String id) {
         if (id == null && "".equals(id)) {
             System.out.println("错误信息 DeptController.delete");

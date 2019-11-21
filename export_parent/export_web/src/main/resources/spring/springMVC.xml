@@ -3,15 +3,18 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--开启注解扫描,扫描controller包下的注解-->
-    <context:component-scan base-package="com.rui.web.controller" />
+    <context:component-scan base-package="com.rui.web" />
 
     <!--配置视图解析器-->
     <!-- return "forward:/WEB-INF/pages/company/company-list.jsp";-->
@@ -42,4 +45,7 @@
 
     <!--开启spring注解驱动-->
     <mvc:annotation-driven />
+
+    <!--开启对aop的注解支持-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
