@@ -27,4 +27,7 @@ public interface UserDao {
 
     //保存用户对应的角色信息(在用户角色中间表)
     void saveUserRole(@Param("userId") String userid,@Param("roleId") String roleId);
+
+    //根据邮箱查询用户对象
+    User findUserByEmail(String email);
 }

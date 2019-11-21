@@ -23,4 +23,10 @@ public interface ModuleDao {
 
     //根据角色id去 角色-模块中间表 查询对应的模块信息
     List<Module> findModuleByRoleId(String roleId);
+
+    //根据用户degree查询模块菜单列表
+    List<Module> findModuleByBelong(int i);
+
+    //根据用户id查询模块菜单列表
+    List<Module> findModuleByUserId(String id);
 }

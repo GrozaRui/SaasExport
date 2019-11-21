@@ -88,4 +88,8 @@
         #{userId}, #{roleId}
         )
     </insert>
+
+    <select id="findUserByEmail" parameterType="string" resultMap="BaseUserMap">
+        select * from pe_user where email = #{email}
+    </select>
 </mapper>

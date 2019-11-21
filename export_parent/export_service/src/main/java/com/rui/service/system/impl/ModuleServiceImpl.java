@@ -3,8 +3,11 @@ package com.rui.service.system.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.rui.dao.system.ModuleDao;
+import com.rui.dao.system.UserDao;
 import com.rui.domain.system.Module;
+import com.rui.domain.system.User;
 import com.rui.service.system.ModuleService;
+import com.rui.service.system.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,9 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Autowired
     private ModuleDao moduleDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public PageInfo findAllModule(int page, int size) {
@@ -60,5 +66,21 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<Module> findModuleByRoleId(String roleId) {
         return moduleDao.findModuleByRoleId(roleId);
+    }
+
+    @Override
+    public List<Module> findModuleByUserId(String id) {
+        //查询用户
+        User user = userDao.findUserById(id);
+        //获取用户degree等级
+        Integer degree = user.getDegree();
+        //根据用户degree查询对应的模块列表 0 => 查询belong=0的所有菜单  1 => belong=1的菜单 其他=>根据权限五表查询用户对应模块菜单
+        if (degree == 0) {
+            return moduleDao.findModuleByBelong(0);
+        } else if (degree == 1) {
+            return moduleDao.findModuleByBelong(1);
+        } else {
+            return moduleDao.findModuleByUserId(id);
+        }
     }
 }

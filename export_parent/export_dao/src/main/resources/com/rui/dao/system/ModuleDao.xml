@@ -76,4 +76,23 @@
         where m.module_id = rm.module_id
         and rm.role_id = #{roleId}
     </select>
+
+    <select id="findModuleByBelong" parameterType="int" resultMap="BaseModuleMap">
+        select * from ss_module where belong = #{belong}
+    </select>
+
+    <select id="findModuleByUserId" parameterType="int" resultMap="BaseModuleMap">
+      SELECT  m.* FROM
+	    ss_module m
+        LEFT JOIN
+        (
+	    SELECT DISTINCT rm.`module_id`
+        FROM pe_role_user ru
+        LEFT JOIN pe_role_module rm
+        ON ru.`role_id` = rm.`role_id`
+        AND ru.`user_id` = #{id}
+         ) a
+	    ON a.`module_id` = m.`module_id`
+
+    </select>
 </mapper>

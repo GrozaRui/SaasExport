@@ -22,4 +22,7 @@ public interface UserService {
 
     //修改用户的角色信息
     void changeRole(String userid, String[] roleIds);
+
+    //根据邮箱查询用户对象
+    User findUserByEmail(String email);
 }

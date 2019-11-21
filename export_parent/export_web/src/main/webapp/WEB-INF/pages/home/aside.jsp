@@ -19,31 +19,32 @@
         <ul class="sidebar-menu">
             <li class="header">菜单</li>
 
-            <%--
-                        <c:forEach items="${sessionScope.modules}" var="item">
-                            <c:if test="${item.ctype==0}">
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i class="fa fa-cube"></i> <span>${item.name}</span>
-                                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <c:forEach items="${sessionScope.modules}" var="item2">
-                                            <c:if test="${item2.ctype==1 && item2.parentId == item.id}">
-                                                <li id="${item2.id}">
-                                                    <a onclick="setSidebarActive(this)" href="${item2.curl}" target="iframe">
-                                                        <i class="fa fa-circle-o"></i>${item2.name}
-                                                    </a>
-                                                </li>
-                                            </c:if>
-                                        </c:forEach>
-                                    </ul>
-                                </li>
-                            </c:if>
-                        </c:forEach>
-                         --%>
 
-           <li class="treeview">
+                <c:forEach items="${sessionScope.modules}" var="item">
+                    <c:if test="${item.ctype==0}">
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cube"></i> <span>${item.name}</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <c:forEach items="${sessionScope.modules}" var="item2">
+                                    <c:if test="${item2.ctype==1 && item2.parentId == item.id}">
+                                        <li id="${item2.id}">
+                                            <a onclick="setSidebarActive(this)" href="${item2.curl}" target="iframe">
+                                                <i class="fa fa-circle-o"></i>${item2.name}
+                                            </a>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:if>
+                </c:forEach>
+
+
+                         --%>
+            <%--<li class="treeview">
                <a href="#">
                    <i class="fa fa-cube"></i> <span>Saas管理</span>
                    <span class="pull-right-container">
@@ -64,7 +65,7 @@
                </ul>
            </li>
 
-         <li class="treeview">
+            <li class="treeview">
              <a href="#">
                  <i class="fa fa-cube"></i> <span>货运管理</span>
                  <span class="pull-right-container">
@@ -115,7 +116,7 @@
              </ul>
          </li>
 
-         <li class="treeview">
+            <li class="treeview">
              <a href="#">
                  <i class="fa fa-cube"></i> <span>统计分析</span>
                  <span class="pull-right-container">
@@ -141,7 +142,7 @@
              </ul>
          </li>
 
-                  <li class="treeview">
+            <li class="treeview">
              <a href="#">
                  <i class="fa fa-cube"></i> <span>基础信息</span>
                  <span class="pull-right-container">
@@ -162,7 +163,7 @@
              </ul>
          </li>
 
-         <li class="treeview">
+            <li class="treeview">
              <a href="#">
                  <i class="fa fa-cube"></i> <span>系统管理</span>
                  <span class="pull-right-container">
@@ -191,10 +192,10 @@
                      </a>
                  </li>
              </ul>
-         </li>
+         </li>--%>
 
-                   </ul>
+        </ul>
 
-               </section>
+    </section>
                <!-- /.sidebar -->
 </aside>

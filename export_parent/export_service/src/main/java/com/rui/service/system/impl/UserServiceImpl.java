@@ -64,4 +64,10 @@ public class UserServiceImpl implements UserService {
             userDao.saveUserRole(userid, roleId);
         }
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userDao.findUserByEmail(email);
+    }
+
 }

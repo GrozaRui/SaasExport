@@ -27,4 +27,7 @@ public interface ModuleService {
 
     //根据角色id去 角色-模块表查询 对应的模块列表
     List<Module> findModuleByRoleId(String roleId);
+
+    //根据用户id查询出可访问的模块列表
+    List<Module> findModuleByUserId(String id);
 }
