@@ -2,8 +2,10 @@ package com.rui.web.controller.system;
 
 import com.github.pagehelper.PageInfo;
 import com.rui.domain.system.Dept;
+import com.rui.domain.system.Role;
 import com.rui.domain.system.User;
 import com.rui.service.system.DeptService;
+import com.rui.service.system.RoleService;
 import com.rui.service.system.UserService;
 import com.rui.web.controller.BaseController;
 import org.apache.commons.lang.StringUtils;
@@ -25,6 +27,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private DeptService deptService;
@@ -94,6 +99,39 @@ public class UserController extends BaseController {
         if (id != null && !"".equals(id)) {
             userService.delete(id);
         }
+        return "redirect:/system/user/list.do";
+    }
+
+    /**
+     * 跳转用户的角色分配页面 回显数据
+     */
+    @RequestMapping("/roleList")
+    public String toRoleList(String id) {
+        //查询出当前用户
+        User user = userService.findUserById(id);
+        request.setAttribute("user", user);
+        //查询出所有角色信息
+        List<Role> roleList = roleService.findAllRole(companyId);
+        request.setAttribute("roleList", roleList);
+        //查询出当前用户的所有角色信息
+        List<Role> userRoleList = roleService.findRoleByUserId(id);
+        //构造字符串 保存有用户所拥有的角色的id
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Role role : userRoleList) {
+            stringBuilder.append(role.getId());
+            stringBuilder.append(",");
+        }
+        request.setAttribute("userRoleStr", stringBuilder.toString());
+        return "system/user/user-role";
+    }
+
+    /**
+     * 修改用户的角色信息
+     * 向后台传递的参数 如果有多个相同名称的input对象 可在后台直接封装为数组
+     */
+    @RequestMapping("/changeRole")
+    public String changeRole(String userid, String[] roleIds) {
+        userService.changeRole(userid, roleIds);
         return "redirect:/system/user/list.do";
     }
 }

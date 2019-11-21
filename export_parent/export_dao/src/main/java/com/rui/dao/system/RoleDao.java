@@ -27,4 +27,7 @@ public interface RoleDao {
 
     //(在角色模块中间表)新增当前角色的模块权限信息
     void saveRoleModule(@Param("roleId") String roleId, @Param("moduleId") String moduleId);
+
+    //(用户角色中间表)根据用户id查询所有角色信息
+    List<Role> findRoleByUserId(String id);
 }

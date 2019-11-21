@@ -54,4 +54,14 @@ public class UserServiceImpl implements UserService {
     public void delete(String id) {
         userDao.delete(id);
     }
+
+    @Override
+    public void changeRole(String userid, String[] roleIds) {
+        //根据用户id删除全部角色数据
+        userDao.deleteUserrole(userid);
+        //遍历数组 添加所有的角色数据
+        for (String roleId : roleIds) {
+            userDao.saveUserRole(userid, roleId);
+        }
+    }
 }

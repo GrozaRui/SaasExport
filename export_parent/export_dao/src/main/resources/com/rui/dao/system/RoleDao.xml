@@ -59,4 +59,11 @@
         )
     </insert>
 
+    <!--根据用户id查询所有角色对象-->
+    <select id="findRoleByUserId" parameterType="string" resultMap="BaseRoleMap">
+        select r.*
+        from pe_role r, pe_role_user ru
+        where r.role_id = ru.role_id
+        and ru.user_id = #{userId}
+    </select>
 </mapper>

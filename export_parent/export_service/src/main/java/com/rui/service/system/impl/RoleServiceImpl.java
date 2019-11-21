@@ -31,6 +31,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public List findAllRole(String companyId) {
+        return roleDao.findAllRole(companyId);
+    }
+
+    @Override
     public Role findRoleById(String id) {
         return roleDao.findRoleById(id);
     }
@@ -62,4 +67,10 @@ public class RoleServiceImpl implements RoleService {
             roleDao.saveRoleModule(roleId, moduleId);
         }
     }
+
+    @Override
+    public List<Role> findRoleByUserId(String id) {
+        return roleDao.findRoleByUserId(id);
+    }
+
 }

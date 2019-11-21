@@ -19,4 +19,7 @@ public interface UserService {
 
     //删除用户信息
     void delete(String id);
+
+    //修改用户的角色信息
+    void changeRole(String userid, String[] roleIds);
 }
