@@ -14,6 +14,8 @@
         <module>export_domain</module>
         <module>export_common</module>
         <module>export_company_interface</module>
+        <module>export_provider</module>
+        <module>export_web_portal</module>
     </modules>
     <packaging>pom</packaging>
 
