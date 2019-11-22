@@ -32,7 +32,7 @@
     </bean>
 
     <!--异常处理器-->
-    <!--<bean class="com.rui.web.exception.MyException"></bean>-->
+    <bean class="com.rui.web.exception.MyException"></bean>
 
     <!--日期处理器-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">

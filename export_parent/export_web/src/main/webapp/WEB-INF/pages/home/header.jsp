@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" language="java" %>
 <header class="main-header">
-    <a href="/main.do" class="logo">
+    <a href="#" class="logo">
         <span class="logo-mini"><img src="../img/logo.png"></span>
         <span class="logo-lg">
                     <img src="../img/export.png">

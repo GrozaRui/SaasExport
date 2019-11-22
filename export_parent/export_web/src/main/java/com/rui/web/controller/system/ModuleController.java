@@ -67,6 +67,4 @@ public class ModuleController extends BaseController {
         moduleService.delete(id);
         return "redirect:/system/module/list.do";
     }
-
-
 }
