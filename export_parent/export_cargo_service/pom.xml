@@ -8,27 +8,22 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>export_cargo_service</artifactId>
     <packaging>war</packaging>
-    <artifactId>export_web</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.rui</groupId>
-            <artifactId>export_service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.rui</groupId>
             <artifactId>export_cargo_interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <!--由于cargo_service服务无法注册到注册中心(破bug弄了一整天没整好)
-            迫不得已先依赖用一下下,嘿嘿嘿-->
             <groupId>com.rui</groupId>
-            <artifactId>export_cargo_service</artifactId>
+            <artifactId>export_dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--dubbo-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>

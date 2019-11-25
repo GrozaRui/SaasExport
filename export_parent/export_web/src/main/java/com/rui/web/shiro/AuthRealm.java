@@ -39,13 +39,14 @@ public class AuthRealm extends AuthorizingRealm {
         //查询当前用户所有的操作菜单权限
         List<Module> moduleList = moduleService.findModuleByUserId(user.getId());
         //构造返回值
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        AuthorizationInfo info = new SimpleAuthorizationInfo();
         Set<String> modules = new HashSet<>();
         for (Module module : moduleList) {
             modules.add(module.getName());
         }
-        info.setStringPermissions(modules);
-        return null;
+        ((SimpleAuthorizationInfo) info).setStringPermissions(modules);
+        System.out.println("AuthRealm 授权信息" + info);
+        return info;
     }
 
     /**

@@ -76,6 +76,8 @@ public class LoginController extends BaseController {
             session.setAttribute("user",loginUser);
             //查询当前用户所具有的所有权限
             List<Module> menus = moduleService.findModuleByUserId(loginUser.getId());
+            System.err.println("LoginController 用户的权限模块 == " + menus);
+
             session.setAttribute("modules",menus);
             return "home/main";
         } catch (AuthenticationException e) {

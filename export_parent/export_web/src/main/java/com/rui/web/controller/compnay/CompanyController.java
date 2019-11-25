@@ -1,6 +1,8 @@
 package com.rui.web.controller.compnay;
 
 import com.github.pagehelper.PageInfo;
+import com.rui.dao.cargo.ContractDao;
+import com.rui.domain.cargo.Contract;
 import com.rui.domain.company.Company;
 import com.rui.entity.PageResult;
 import com.rui.service.company.CompanyService;
@@ -22,6 +24,9 @@ public class CompanyController extends BaseController {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private ContractDao contractDao;
+
     //查询所有
     @RequestMapping("/list")
     public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
@@ -31,6 +36,8 @@ public class CompanyController extends BaseController {
         //List<Company> list = companyService.findAll();
         //request.setAttribute("companyList", list);
         request.setAttribute("page",pageInfo);
+        Contract contract = contractDao.selectByPrimaryKey("2c90c5004ad63735014ad6d204060005");
+        System.err.println(contract);
         return "company/company-list";
     }
 
