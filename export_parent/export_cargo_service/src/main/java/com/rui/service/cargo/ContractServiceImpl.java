@@ -15,12 +15,12 @@ import java.util.List;
  * @author: caihongrui
  * @createtime: 2019-11-22 17:25
  **/
+
 @Service
 public class ContractServiceImpl implements ContractService {
 
     @Autowired
     private ContractDao contractDao;
-    //@Autowired
 
     @Override
     public PageInfo findAll(ContractExample example, int page, int size) {

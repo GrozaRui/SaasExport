@@ -22,13 +22,13 @@
             <artifactId>export_cargo_interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <!--由于cargo_service服务无法注册到注册中心(破bug弄了一整天没整好)
-            迫不得已先依赖用一下下,嘿嘿嘿-->
-            <groupId>com.rui</groupId>
-            <artifactId>export_cargo_service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--&lt;!&ndash;由于cargo_service服务无法注册到注册中心(破bug弄了一整天没整好)-->
+            <!--迫不得已先依赖用一下下,嘿嘿嘿&ndash;&gt;-->
+            <!--<groupId>com.rui</groupId>-->
+            <!--<artifactId>export_cargo_service</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>

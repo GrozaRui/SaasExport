@@ -47,7 +47,7 @@
     </bean>
 
     <!--开启spring注解驱动-->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 
     <!--开启对aop的注解支持-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -55,7 +55,7 @@
     <!--服务名-->
     <dubbo:application name="export_web_manager"></dubbo:application>
     <!--注册中心-->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
+    <dubbo:registry address="zookeeper://localhost:2181"></dubbo:registry>
     <!--包扫描-->
     <dubbo:annotation package="com.rui.web"></dubbo:annotation>
     <!--检查 当消费者启动的时候 不校验 @Reference -->
