@@ -1,19 +1,19 @@
 package com.rui.web.controller.cargo;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.ctc.wstx.util.StringUtil;
 import com.github.pagehelper.PageInfo;
 import com.rui.domain.cargo.ContractProduct;
 import com.rui.domain.cargo.ContractProductExample;
 import com.rui.domain.cargo.FactoryExample;
 import com.rui.service.cargo.ContractProductService;
 import com.rui.service.cargo.FactoryService;
+import com.rui.util.FileUploadUtil;
 import com.rui.web.controller.BaseController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 /**
@@ -65,11 +65,15 @@ public class ContractProductController extends BaseController {
     }
 
     @RequestMapping(value = "/edit", name = "保存货物信息")
-    public String edit(ContractProduct contractProduct) {
+    public String edit(ContractProduct contractProduct, MultipartFile productPhoto) throws Exception {
         //保存公司信息
         contractProduct.setCompanyId(companyId);
         contractProduct.setCompanyName(companyName);
         if (StringUtils.isEmpty(contractProduct.getId())) {
+            if(productPhoto != null && !productPhoto.isEmpty()) {
+                String url = new FileUploadUtil().upload(productPhoto);
+                contractProduct.setProductImage(url);
+            }
             contractProductService.save(contractProduct);
         } else {
             contractProductService.update(contractProduct);

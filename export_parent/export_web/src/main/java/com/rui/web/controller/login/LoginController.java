@@ -88,6 +88,15 @@ public class LoginController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "/logout",name="用户登出")
+    public String logout(){
+        //往数据库插入一条日志 syslog.save(日志)
+        //SecurityUtils.getSubject().logout();   //登出
+        //session.invalidate();//销毁数据
+        session.removeAttribute("user");
+        return "forward:login.jsp";
+    }
+
     @RequestMapping("/home")
     public String toHomePage() {
         return "home/home";

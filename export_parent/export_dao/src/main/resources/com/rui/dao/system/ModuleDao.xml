@@ -26,7 +26,7 @@
         select * from ss_module
     </select>
 
-    <select id="findModuleById" parameterType="string" resultMap="BaseModuleMap">
+    <select id="findModuleById" parameterType="String" resultMap="BaseModuleMap">
         select * from ss_module where module_id = #{id}
     </select>
 
@@ -66,11 +66,11 @@
         where module_id = #{id}
     </update>
 
-    <delete id="delete" parameterType="string">
+    <delete id="delete" parameterType="String">
         delete from ss_module where module_id = #{id}
     </delete>
 
-    <select id="findModuleByRoleId" parameterType="string" resultMap="BaseModuleMap">
+    <select id="findModuleByRoleId" parameterType="String" resultMap="BaseModuleMap">
         select m.*
         from ss_module m, pe_role_module rm
         where m.module_id = rm.module_id
@@ -81,7 +81,7 @@
         select * from ss_module where belong = #{belong}
     </select>
 
-    <select id="findModuleByUserId" parameterType="int" resultMap="BaseModuleMap">
+    <select id="findModuleByUserId" parameterType="String" resultMap="BaseModuleMap">
       SELECT  m.* FROM
 	    ss_module m
         LEFT JOIN

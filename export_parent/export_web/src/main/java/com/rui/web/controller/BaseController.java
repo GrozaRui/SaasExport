@@ -1,5 +1,6 @@
 package com.rui.web.controller;
 
+import com.rui.domain.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -28,5 +29,9 @@ public class BaseController {
         this.request = request;
         this.response = response;
         this.session = session;
+    }
+
+    protected User getLoginUser() {
+        return (User) session.getAttribute("user");
     }
 }
