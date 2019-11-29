@@ -10,10 +10,21 @@ import com.rui.service.cargo.FactoryService;
 import com.rui.util.FileUploadUtil;
 import com.rui.web.controller.BaseController;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.mail.Multipart;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,4 +97,59 @@ public class ContractProductController extends BaseController {
         contractProductService.delete(id);
         return "redirect:/cargo/contractProduct/list.do?contractId=" + contractId;
     }
+
+    @RequestMapping(value="/toImport",name = "跳转到导入页面")
+    public String toImport(String contractId) {
+        request.setAttribute("contractId",contractId);
+        return "cargo/product/product-import";
+    }
+
+    @RequestMapping(value = "/import", name = "批量导入货物")
+    public String importExcel(String contractId, MultipartFile file) throws IOException {
+        XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        //遍历表 依次获取每个单元格数据
+        List<ContractProduct> list = new ArrayList<>();
+        for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
+            Row row = sheet.getRow(i);
+            Object[] objects = new Object[row.getLastCellNum()];
+            for (int j = 1; j < row.getLastCellNum(); j++) {
+                Cell cell = row.getCell(j);
+                if (cell != null) {
+                    objects[j] = getCellValue(cell);
+                }
+            }
+            ContractProduct contractProduct = new ContractProduct(objects, companyId, companyName);
+            contractProduct.setContractId(contractId);
+            list.add(contractProduct);
+        }
+        contractProductService.saveAll(list);
+        return "redirect:/cargo/contractProduct/list.do?contractId="+contractId;
+    }
+
+    private static Object getCellValue(Cell cell) {
+        Object object = null;
+        CellType cellType = cell.getCellType();
+        switch (cellType) {
+            case STRING:
+                object = cell.getStringCellValue();
+                break;
+                //excel默认将日期也认为是数字
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    object = cell.getDateCellValue();
+                } else {
+                    object = cell.getNumericCellValue();
+                }
+                break;
+            case BOOLEAN:
+                object = cell.getBooleanCellValue();
+                break;
+            default:
+                break;
+        }
+        return object;
+    }
+
 }

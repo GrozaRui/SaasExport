@@ -120,4 +120,6 @@ public class ContractController extends BaseController {
         return "redirect:/cargo/contract/list.do";
     }
 
+
+
 }

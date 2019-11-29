@@ -120,4 +120,15 @@ public class ContractProductServiceImpl implements ContractProductService {
         contractDao.updateByPrimaryKeySelective(contract);
     }
 
+    @Override
+    public void saveAll(List<ContractProduct> list) {
+        for (ContractProduct contractProduct : list) {
+            this.save(contractProduct);
+        }
+    }
+
+    @Override
+    public List<ContractProductVo> findVoByShipTime(String inputDate, String companyId) {
+        return contractProductDao.findByShipTime(inputDate,companyId);
+    }
 }

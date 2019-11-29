@@ -318,4 +318,14 @@
       company_name = #{companyName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findByShipTime" parameterType="map" resultType="com.rui.domain.cargo.ContractProductVo">
+        SELECT
+            co.custom_name customName,co.contract_no contractNo,cp.product_no productNo,cp.cnumber,
+            cp.factory_name factoryName, co.delivery_period deliveryPeriod,co.ship_time shipTime,co.trade_terms tradeTerms
+        FROM co_contract  co,co_contract_product cp
+        WHERE  DATE_FORMAT(co.ship_time,'%Y-%m') =#{shipTime}
+        AND co.id = cp.contract_id
+        AND co.company_id=#{companyId}
+    </select>
 </mapper>
