@@ -1,8 +1,9 @@
 package com.rui.domain.export;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ExtEproduct {
+public class ExtEproduct implements Serializable {
     private String id;
 
     private String exportProductId;

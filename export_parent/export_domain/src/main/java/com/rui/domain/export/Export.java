@@ -1,54 +1,43 @@
 package com.rui.domain.export;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
-public class Export {
+public class Export implements Serializable {
     private String id;
-
     private Date inputDate;
-
     private String contractIds;
-
     private String customerContract;
-
     private String lcno;
-
     private String consignee;
-
     private String marks;
-
     private String shipmentPort;
-
     private String destinationPort;
-
     private String transportMode;
-
     private String priceCondition;
-
     private String remark;
-
     private Long boxNums;
-
     private BigDecimal grossWeights;
-
     private BigDecimal measurements;
-
     private Long state;
-
     private Integer proNum;
-
     private Integer extNum;
-
     private String createBy;
-
     private String createDept;
-
     private Date createTime;
-
     private String companyId;
-
     private String companyName;
+    private List<ExportProduct> exportProducts;
+
+    public List<ExportProduct> getExportProducts() {
+        return exportProducts;
+    }
+
+    public void setExportProducts(List<ExportProduct> exportProducts) {
+        this.exportProducts = exportProducts;
+    }
 
     public String getId() {
         return id;

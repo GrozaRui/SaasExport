@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Contract extends BaseEntity {
+public class Contract extends BaseEntity implements Serializable  {
 
     private String id;
     private String offeror;
